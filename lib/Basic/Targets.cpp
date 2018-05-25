@@ -19,6 +19,7 @@
 #include "Targets/ARM.h"
 #include "Targets/AVR.h"
 #include "Targets/BPF.h"
+#include "Targets/C65.h"
 #include "Targets/Hexagon.h"
 #include "Targets/Lanai.h"
 #include "Targets/Le64.h"
@@ -123,6 +124,9 @@ TargetInfo *AllocateTarget(const llvm::Triple &Triple,
   switch (Triple.getArch()) {
   default:
     return nullptr;
+
+  case llvm::Triple::c65:
+    return new C65TargetInfo(Triple, Opts);
 
   case llvm::Triple::xcore:
     return new XCoreTargetInfo(Triple, Opts);
